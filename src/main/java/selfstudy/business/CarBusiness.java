@@ -14,7 +14,7 @@ public class CarBusiness {
 		this.carService = carService;
 	}
 
-	public List<String> getCarList(String owner) {
+	public List<String> getRealCarList(String owner) {
 		List<String> filteredCars = new ArrayList<String>();
 		List<String> cars = this.carService.getCarList(owner);
 		
