@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.anyString;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +41,20 @@ public class CarBusinessMockTest {
 		
 		List<String> cars = carBusiness.getRealCarList("Marry");		
 		assertEquals(cars.size(), 0);
-	}		
+	}	
+	
+	@Test
+	public void carListSizeShouldBeFour() {
+		ICarService carMockService = mock(ICarService.class);
+		
+		List<String> carActualList = Arrays.asList("Toyota", "BMW", "", "None", "Opel", "Volvo");
+		when(carMockService.getCarList(anyString())).thenReturn( carActualList);
+		
+		CarBusiness carBusiness = new CarBusiness(carMockService);		
+		
+		List<String> cars = carBusiness.getRealCarList("Marry");		
+		assertEquals(cars.size(), 4);
+	}	
 
 	@Test
 	public void carListShouldNotContainNone() {		
